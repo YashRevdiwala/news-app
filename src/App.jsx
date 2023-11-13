@@ -1,46 +1,46 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import "./App.css"
+import { useState, useEffect } from "react"
 import axios from "axios"
-import { useState } from "react"
 import Loader from "./components/Loader"
+import Article from "./components/Article"
 
 function App() {
   const [newsData, setNewsData] = useState([])
   const [errorLog, setErrorLog] = useState([])
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getNews()
+  }, [])
+
   const getNews = async () => {
     await axios
       .get(
-        `https://newsdata.io/api/1/news?apikey=${
+        `http://api.mediastack.com/v1/news?access_key=${
           import.meta.env.VITE_MEDIASTACK_API_TOKEN
-        }&country=in&language=en`
+        }&countries=in`
       )
-      .then((response) => {
-        console.log(response.data)
-        setNewsData(response.data.results)
+      .then((data) => {
+        console.log(data.data.data)
+        setNewsData(data.data.data)
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error.response)
-        setErrorLog(error.response.data.results)
+        console.error(error)
+        setErrorLog(error)
         setLoading(false)
       })
   }
-
-  getNews()
 
   return loading ? (
     <Loader />
   ) : (
     <>
-      <h1 className="text-3xl font-bold underline">The News Bugle</h1>
-      {newsData.map((data) => {
-        return (
-          <article key={data.article_id}>
-            <h1>1</h1>
-          </article>
-        )
+      <h1>The News Bugle</h1>
+      {newsData.map((data, i) => {
+        return <Article data={data} key={i} />
       })}
     </>
   )
