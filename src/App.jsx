@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Loader from "./components/Loader"
 import Article from "./components/Article"
+import NavBar from "./components/Navbar"
 
 function App() {
   const [newsData, setNewsData] = useState([])
@@ -38,10 +39,12 @@ function App() {
     <Loader />
   ) : (
     <>
-      <h1>The News Bugle</h1>
-      {newsData.map((data, i) => {
-        return <Article data={data} key={i} />
-      })}
+      <NavBar />
+      <div className="grid grid-cols-4 gap-4 items-start w-full px-10">
+        {newsData.map((data, i) => {
+          return <Article data={data} key={i} />
+        })}
+      </div>
     </>
   )
 }
