@@ -19,9 +19,9 @@ function App() {
   const getNews = async () => {
     await axios
       .get(
-        `http://api.mediastack.com/v1/news?access_key=${
-          import.meta.env.VITE_MEDIASTACK_API_TOKEN
-        }&countries=in`
+        `https://newsdata.io/api/1/news?apikey=${
+          import.meta.env.VITE_NEWSDATA_API_TOKEN
+        }&country=in`
       )
       .then((data) => {
         console.log(data.data.data)
