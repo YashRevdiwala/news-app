@@ -21,11 +21,11 @@ function App() {
       .get(
         `https://newsdata.io/api/1/news?apikey=${
           import.meta.env.VITE_NEWSDATA_API_TOKEN
-        }&country=in`
+        }&country=in&image=1`
       )
       .then((data) => {
-        console.log(data.data.data)
-        setNewsData(data.data.data)
+        console.log(data.data.results)
+        setNewsData(data.data.results)
         setLoading(false)
       })
       .catch((error) => {
@@ -41,8 +41,8 @@ function App() {
     <>
       <NavBar />
       <div className="grid grid-cols-4 gap-4 items-start w-full px-10">
-        {newsData.map((data, i) => {
-          return <Article data={data} key={i} />
+        {newsData.map((data) => {
+          return <Article data={data} key={data.article_id} />
         })}
       </div>
     </>
