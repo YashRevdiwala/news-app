@@ -12,7 +12,7 @@ export default async function Home() {
   const newsData = newsWithImages.concat(newsWithoutImages)
 
   return (
-    <div className="mx-10 grid max-w-screen-2xl grid-cols-4 gap-4">
+    <div className="mx-10 grid max-w-screen-2xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {newsData?.map((newsData, i) => {
         return <Article key={i} data={newsData} />
       })}
