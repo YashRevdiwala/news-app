@@ -1,8 +1,10 @@
 import axios from "axios"
-import { Article } from "./_components/article"
+import { Article } from "../../_components/article"
 
-export default async function Home() {
-  const fetchNews = await axios.get(process.env.NEWS_API)
+const Page = async ({ params }) => {
+  const fetchNews = await axios.get(
+    `${process.env.NEWS_API}&keywords=${params.searchKeyword}`
+  )
   const newsWithImages = fetchNews.data.data.filter((imageData) => {
     return imageData.image !== null
   })
@@ -19,3 +21,4 @@ export default async function Home() {
     </div>
   )
 }
+export default Page
