@@ -13,8 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={(inter.className, "dark:bg-[#242424]")}>
-        <NavBar />
-        {children}
+        <div className="mx-auto max-w-7xl">
+          <NavBar />
+          {children}
+        </div>
       </body>
     </html>
   )

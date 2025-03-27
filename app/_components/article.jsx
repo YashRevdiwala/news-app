@@ -2,7 +2,7 @@ import { TimeAgo } from "./time"
 
 export const Article = ({ data }) => {
   return (
-    <div className="rounded-md bg-[#e2e8f0] dark:bg-[#1e293b]">
+    <div className="rounded-lg bg-[#e2e8f0] dark:bg-[#1e293b]">
       {data.image !== null && (
         <img src={data.image} alt={data.title} className="rounded-md" />
       )}
