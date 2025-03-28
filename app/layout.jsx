@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google"
-import "./globals.css"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import { NavBar } from "./_components/navbar"
+import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
         <div className="mx-auto max-w-7xl">
           <NavBar />
           {children}
+          <SpeedInsights />
         </div>
       </body>
     </html>
